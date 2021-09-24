@@ -1,43 +1,8 @@
+from renderer import render
+
+
 def render_template(text: str, **params):
-    pos = 0
-
-    def get_curr():
-        nonlocal pos, text
-        if pos < len(text):
-            return text[pos]
-        return None
-
-    def peek_next():
-        nonlocal pos, text
-        npos = pos + 1
-        if npos < len(text):
-            return text[npos]
-        return None
-
-    def next_char():
-        nonlocal pos
-        ch = get_curr()
-        pos += 1
-        return ch
-
-    res = ""
-
-    while pos < len(text):
-        if get_curr() == "{":
-            if peek_next() == "%":
-                next_char()
-                next_char()
-                expr = ""
-                while not (get_curr() == "%" and peek_next() == "}"):
-                    expr += next_char()
-                next_char()
-                next_char()
-                sub = eval(expr, {}, params)
-                res += sub
-                continue
-        res += next_char()
-
-    return res
+    return render(text, **params)
 
 
 def render_file(filename: str, **params):

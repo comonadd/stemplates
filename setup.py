@@ -1,4 +1,10 @@
 from setuptools import setup, find_packages
+from distutils.core import Extension
+
+renderer_module = Extension(
+    "renderer",
+    sources=["stemplates/renderer.cpp"],
+)
 
 with open("README.md") as f:
     long_description = f.read()
@@ -21,4 +27,5 @@ setup(
     ],
     keywords="templates render template file string",
     zip_safe=False,
+    ext_modules=[renderer_module],
 )

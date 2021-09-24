@@ -20,3 +20,10 @@ def test_loops():
 Current users: {% ' '.join(map(lambda user: user.lower(), users)) %}"""
     res = render_template(text, users=["john", "martin", "ben", "alexander"])
     assert res == "Current users: john martin ben alexander"
+
+
+def test_escape():
+    text = """\
+Hello, \{%username%}"""
+    res = render_template(text, username="John")
+    assert res == "Hello, {%username%}"
