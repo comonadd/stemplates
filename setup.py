@@ -11,7 +11,7 @@ with open("README.md") as f:
 
 setup(
     name="stemplates",
-    version="1.0.0",
+    version="1.0.1",
     author="Dmitry Guzeev",
     author_email="dmitri.guzeev@gmail.com",
     url="https://github.com/comonadd/stemplates",
