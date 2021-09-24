@@ -51,8 +51,8 @@ static PyObject* render(PyObject* self, PyObject* args, PyObject* kwargs) {
         ++pos;
       }
       // Evaluate expression using Python built-in eval()
-      PyObject* expr_o = PyUnicode_FromString(expr.c_str());
-      PyObject* res = PyObject_CallFunction(eval, "(OO)", expr_o, kwargs);
+      PyObject* res = PyObject_CallFunction(eval, "(sO)", expr.c_str(), kwargs);
+      // Append that to the resulting string
       PyObject* repr = PyObject_Str(res);
       PyObject* str = PyUnicode_AsEncodedString(repr, "utf-8", "~E~");
       const char* e = PyBytes_AS_STRING(str);
